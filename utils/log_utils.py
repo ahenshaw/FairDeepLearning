@@ -13,6 +13,7 @@ import torch
 
 class AverageMeterSet:
     """Computes average values of metrics"""
+
     def __init__(self):
         self.meters = {}
 
@@ -47,6 +48,7 @@ class AverageMeterSet:
 
 class AverageMeter:
     """Computes and stores the average and current value"""
+
     def __init__(self):
         self.reset()
 
@@ -70,6 +72,7 @@ class AverageMeter:
 
 class TrainLog:
     """Saves training logs in Pandas msgpacks"""
+
     INCREMENTAL_UPDATE_TIME = 300
 
     def __init__(self, directory, name, wandb=None, init_tb=False):
@@ -111,9 +114,10 @@ class TrainLog:
         if self._summary_writer:
             for name, value in col_val_dict.items():
                 if self.is_tb_key(name):
-                    self._summary_writer.add_scalar(
-                        "{}/{}".format(self.name, name), value, tbstep
-                    )
+                    pass
+                    # self._summary_writer.add_scalar(
+                    #     "{}/{}".format(self.name, name), value, tbstep
+                    # )
         self._record(step, col_val_dict)
 
     def save(self):

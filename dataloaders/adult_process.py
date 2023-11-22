@@ -19,6 +19,7 @@ SENSATTR_RULES = {
 def binarize_sensattr(val, sensattr, thresh1, thresh2):
     return SENSATTR_RULES[sensattr](val, thresh1, thresh2)
 
+
 def bucket(x, buckets):
     x = float(x)
     n = len(buckets)
@@ -31,6 +32,7 @@ def bucket(x, buckets):
     template[label] = 1.0
     return template
 
+
 def onehot(x, choices):
     if not x in choices:
         print('could not find "{}" in choices'.format(x))
@@ -41,8 +43,10 @@ def onehot(x, choices):
     template[label] = 1.0
     return template
 
+
 def continuous(x):
     return [float(x)]
+
 
 def parse_row(row, headers, headers_use, fns, sensitive, target, thresh1, thresh2):
     new_row_dict = {}
@@ -59,12 +63,14 @@ def parse_row(row, headers, headers_use, fns, sensitive, target, thresh1, thresh
         new_row = new_row + new_row_dict[h]
     return new_row, label, sens_att
 
+
 def whiten(X, mn, std):
     mntile = np.tile(mn, (X.shape[0], 1))
     stdtile = np.maximum(np.tile(std, (X.shape[0], 1)), EPS)
     X = X - mntile
     X = np.divide(X, stdtile)
     return X
+
 
 def get_adult_data(target, sensitive, clr_ratio):
     thresh1, thresh2 = 0, 0
@@ -168,9 +174,9 @@ def get_adult_data(target, sensitive, clr_ratio):
         D[phase]["Y"] = npY
         D[phase]["A"] = npA
 
-        print(npX.shape)
-        print(npY.shape)
-        print(npA.shape)
+        print(npX.shape, phase)
+        print(npY.shape, phase)
+        print(npA.shape, phase)
 
     # should do normalization and centring
     mn = np.mean(D["training"]["X"], axis=0)

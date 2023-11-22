@@ -1,9 +1,11 @@
 {
     "name": "deepfairness",
-    "project" : "deep-fairness-project",
-    "dir": "/scratch/charanr/fairness-project/output/wandb",
+    "project": "deep-fairness-project",
+    "dir": "./output/wandb",
     "entity": "charanreddymila",
     "allow_val_change": true,
     "sync_tensorboard": true,
-    "tags": ["all"]
+    "tags": [
+        "all"
+    ]
 }

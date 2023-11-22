@@ -2,7 +2,6 @@ torch
 torchvision
 pandas
 requests
-sklearn
 tensorboardX
 tensorboard
 tensorflow

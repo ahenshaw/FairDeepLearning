@@ -294,13 +294,25 @@ def save_early_stopping_logs(
 
 
 def get_model(args):
-    class_names = {"cfair": "CFairNet", "conv": "ConvNet", "ffvae": "Ffvae", "laftr": "LaftrNet", "mlp": "MLPNet", "ffvae_cfair": "Ffvae_cfair", "ffvae_laftr": "Ffvae_laftr"}
+    class_names = {
+        "cfair": "CFairNet",
+        "conv": "ConvNet",
+        "ffvae": "Ffvae",
+        "laftr": "LaftrNet",
+        "mlp": "MLPNet",
+        "ffvae_cfair": "Ffvae_cfair",
+        "ffvae_laftr": "Ffvae_laftr",
+    }
     if args.model_name == "ffvae_cfair" or args.model_name == "ffvae_laftr":
-        mod = import_module('.ablations.model_'+args.model_name, package="models")
-        model = getattr(mod, class_names[args.model_name]).build_model(args).to(args.device)
+        mod = import_module(".ablations.model_" + args.model_name, package="models")
+        model = (
+            getattr(mod, class_names[args.model_name]).build_model(args).to(args.device)
+        )
     else:
-        mod = import_module('.model_'+args.model_name, package="models")
-        model = getattr(mod, class_names[args.model_name]).build_model(args).to(args.device)
+        mod = import_module(".model_" + args.model_name, package="models")
+        model = (
+            getattr(mod, class_names[args.model_name]).build_model(args).to(args.device)
+        )
     return model
 
 

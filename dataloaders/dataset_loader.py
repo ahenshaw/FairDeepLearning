@@ -76,6 +76,9 @@ class Dataset:
             raise KeyError("Wrong dataset name")
 
         sz = x.shape[0]
+
+        print(which_set, x.shape, y.shape, a.shape)
+
         batch_inds = make_batch_inds(sz, batch_size, shuffle, keep_remainder, seed)
         iterator = DatasetIterator([x, y, a], batch_inds)
         return iterator
@@ -209,10 +212,11 @@ def make_batch_inds(n, batch_size, shuffle, keep_remainder=False, seed=None):
         n = (n // batch_size) * batch_size  # round to nearest mb_size
     # shuffle every time differently if seed not set.
     shuf = np.random.permutation(n) if shuffle else np.arange(n)
+    print("\n\n\n", n, batch_size)
     return np.array_split(shuf, n // batch_size)
 
 
-class DatasetIterator(collections.Iterator):
+class DatasetIterator(collections.abc.Iterator):
     def __init__(self, tensor_list, ind_list):
         self.tensors = tensor_list
         self.inds = ind_list

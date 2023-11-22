@@ -5,7 +5,7 @@ set -o errexit -o pipefail -o noclobber -o nounset
 
 # -allow a command to fail with !’s side effect on errexit
 # -use return value from ${PIPESTATUS[0]}, because ! hosed $?
-! getopt --test > /dev/null 
+! getopt --test > /dev/null
 if [[ ${PIPESTATUS[0]} -ne 4 ]]; then
     echo 'I’m sorry, `getopt --test` failed in this environment.'
     exit 1
@@ -31,12 +31,12 @@ fi
 eval set -- "$PARSED"
 
 
-# Below are just default args, 
+# Below are just default args,
 # args needed to run are taken from launcher.py files in scripts/ folder
 
 # FOLDERS
 ddir="./data"
-odir="/scratch/charanr/fairness-project/output/"
+odir="./output/"
 mkdir -p $odir $ddir
 
 # DATASET ARGS
